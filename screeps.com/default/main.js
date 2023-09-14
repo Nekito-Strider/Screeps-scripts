@@ -16,7 +16,7 @@ module.exports.loop = function () {
     var tower = Game.spawns['Spawn1'].room.find('FIND_MY_STRUCTURES', {
         filter: {structureType: STRUCTURE_TOWER}
     });
-    if(tower.length > 0) {
+    if(tower.length) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax
         });
