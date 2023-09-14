@@ -13,7 +13,7 @@ module.exports.loop = function () {
     }
 
     //tower logic
-    var tower = Game.structures.structureType['tower'];
+    var tower = Game.structures.structureType['STRUCTURE_TOWER'];
     if(tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
             filter: (structure) => structure.hits < structure.hitsMax
