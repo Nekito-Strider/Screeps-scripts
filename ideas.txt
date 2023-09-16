@@ -1,1 +1,2 @@
 For harvesting maybe use a combination of room.resource.pos compared to room.terrain.get(x,y) to create a list of available mining spots and have harvesters(miners?) assigned to those locations
+alternative, have harvesters drop flags at mining locations
