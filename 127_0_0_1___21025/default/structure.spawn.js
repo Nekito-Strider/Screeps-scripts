@@ -13,7 +13,7 @@ var structureSpawn = {
         var harvesters = _.filter(localCreeps, (creep) => creep.memory.role == 'harvester');
         var upgraders = _.filter(localCreeps, (creep) => creep.memory.role == 'upgrader');
         var builders = _.filter(localCreeps, (creep) => creep.memory.role == 'builder');
-        var laborers = _.filter(localCreeps, (creep) => creep.memory.role == 'laborer');
+        var labourers = _.filter(localCreeps, (creep) => creep.memory.role == 'labourer');
         var haulers = _.filter(localCreeps, (creep) => creep.memory.role == 'hauler');
         var meleeAttackers = _.filter(localCreeps, (creep) => creep.memory.role == 'attackerMelee');
 
@@ -21,12 +21,12 @@ var structureSpawn = {
         spawn.room.memory.localSourceIds = localSourceIds;
 
         if (spawn.room.energyCapacityAvailable < 500 || localCreeps.length == 0) {
-            if (laborers.length < 2) {
-                var newName = 'Laborer' + Game.time;
+            if (labourers.length < 2) {
+                var newName = 'Labourer' + Game.time;
                 console.log('Now spawning: ' + newName);
                 spawn.spawnCreep([WORK, CARRY, MOVE], newName,
-                    { memory: { role: 'laborer' } });
-            } else if (laborers.length >= 2 && upgraders.length < 1) {
+                    { memory: { role: 'labourer' } });
+            } else if (labourers.length >= 2 && upgraders.length < 1) {
                 var newName = 'Upgrader' + Game.time;
                 console.log('Now spawning: ' + newName);
                 spawn.spawnCreep([WORK, CARRY, MOVE], newName,
@@ -37,7 +37,8 @@ var structureSpawn = {
                 var newName = 'Harvester' + Game.time;
                 console.log('Now spawning: ' + newName);
                 spawn.spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
-                    { memory: { role: 'harvester', hasHauler: false } })
+                    { memory: { role: 'harvester', hasHauler: false, mySourceId: spawn.room.memory.localSourceIds[harvesters.length] } })
+                
             } else if (haulers.length < harvesters.length) {
                 var newName = 'Hauler' + Game.time;
                 console.log('Now spawning: ' + newName);
