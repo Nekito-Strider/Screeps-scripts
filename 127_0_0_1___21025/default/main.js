@@ -2,6 +2,7 @@ var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleLabourer = require('role.labourer');
+let roleHauler = require('role.hauler');
 var roleAttackerMelee = require('role.attackerMelee');
 var structureSpawn = require('structure.spawn');
 
@@ -29,17 +30,20 @@ module.exports.loop = function () {
     //role script executions
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
-        if (creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
-        }
         if (creep.memory.role == 'upgrader') {
             roleUpgrader.run(creep);
         }
-        if (creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
-        }
         if (creep.memory.role == 'labourer') {
             roleLabourer.run(creep);
+        }
+        if (creep.memory.role == 'harvester') {
+            roleHarvester.run(creep);
+        }
+        if (creep.memory.role == 'hauler') {
+            roleHauler.run(creep);
+        }
+        if (creep.memory.role == 'builder') {
+            roleBuilder.run(creep);
         }
         if (creep.memory.role == 'attackerMelee') {
             roleAttackerMelee.run(creep);

@@ -1,4 +1,0 @@
-have hauler check to see if its harvesters source has an assigned container. if not build a container on the harvesters position.
-on the harvesters side check to see if its source has a container, if yes move to it, if no move to source and begin harvesting
-
-for laborer/upgrader building logic check if a construction site has been assigned, if not FIND construction sites and assign a cosntruction site. build this site until complete then find a new one

@@ -33,7 +33,7 @@ var roleLabourer = {
                     } else {
                          if (creep.build(Game.getObjectById(creep.memory.constructionSite)) == ERR_NOT_IN_RANGE) {
                               creep.moveTo(Game.getObjectById(creep.memory.constructionSite), { visualizePathStyle: { stroke: '#ffffff' } });
-                         } else if(creep.build(Game.getObjectById(creep.memory.constructionSite)) == ERR_INVALID_TARGET) {
+                         } else if (creep.build(Game.getObjectById(creep.memory.constructionSite)) == ERR_INVALID_TARGET) {
                               creep.memory.constructionSite = targets[0].id;
                          }
                     }
