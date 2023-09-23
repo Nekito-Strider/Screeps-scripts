@@ -22,11 +22,11 @@ module.exports.loop = function () {
             console.log('Clearing non-existing spawn memory', name);
         }
     }*/
-            //spawn script execution
-            for (var name in Game.spawns) {
-                var spawn = Game.spawns[name];
-                structureSpawn.run(spawn);
-            }
+    //spawn script execution
+    for (var name in Game.spawns) {
+        var spawn = Game.spawns[name];
+        structureSpawn.run(spawn);
+    }
     //role script executions
     for (var name in Game.creeps) {
         var creep = Game.creeps[name];
@@ -48,7 +48,7 @@ module.exports.loop = function () {
         if (creep.memory.role == 'attackerMelee') {
             roleAttackerMelee.run(creep);
         }
-        
+
 
 
         const elapsed = Game.cpu.getUsed();

@@ -28,17 +28,18 @@ var roleLabourer = {
                }
                if (creep.memory.building && !creep.memory.harvest) {
                     var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-                    if (!creep.memory.constructionSite) {
-                         creep.memory.constructionSite = targets[0].id;
-                    } else {
-                         if (creep.build(Game.getObjectById(creep.memory.constructionSite)) == ERR_NOT_IN_RANGE) {
-                              creep.moveTo(Game.getObjectById(creep.memory.constructionSite), { visualizePathStyle: { stroke: '#ffffff' } });
-                         } else if (creep.build(Game.getObjectById(creep.memory.constructionSite)) == ERR_INVALID_TARGET) {
+                    if (targets > 0) {
+                         if (!creep.memory.constructionSite) {
                               creep.memory.constructionSite = targets[0].id;
+                         } else {
+                              if (creep.build(Game.getObjectById(creep.memory.constructionSite)) == ERR_NOT_IN_RANGE) {
+                                   creep.moveTo(Game.getObjectById(creep.memory.constructionSite), { visualizePathStyle: { stroke: '#ffffff' } });
+                              } else if (creep.build(Game.getObjectById(creep.memory.constructionSite)) == ERR_INVALID_TARGET) {
+                                   creep.memory.constructionSite = targets[0].id;
+                              }
                          }
                     }
-               }
-               else {
+               } else {
                     var sources = creep.room.find(FIND_SOURCES);
                     if (!creep.memory.hasRoom) {
                          if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
@@ -57,8 +58,16 @@ var roleLabourer = {
                }
           } else if (!creep.memory.roomEnergyFull) {
                if (creep.memory.harvest) {
+                    let droppedEnergy = creep.room.find(FIND_DROPPED_RESOURCES);
                     var sources = creep.room.find(FIND_SOURCES);
-                    if (!creep.memory.hasRoom) {
+                    if (droppedEnergy.length > 0) {
+                         for (let i in droppedEnergy) {
+                              let target = droppedEnergy[i];
+                              if (creep.pickup(target) == ERR_NOT_IN_RANGE) {
+                                   creep.moveTo(target);
+                              }
+                         }
+                    } else if (!creep.memory.hasRoom) {
                          if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
                               if (creep.moveTo(sources[1], { visualizePathStyle: { stroke: '#ffaa00' } }) == ERR_NO_PATH) {
                                    creep.memory.hasRoom = true;
