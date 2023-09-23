@@ -1,0 +1,2 @@
+-fix harvester assignedResourceId selection on spawn. needs to be assigned from a pool of available sources to avoid sending multiple harvesters to the same source
+-run tests to see if hauler/harvester memory setup happens when their counterpart dies

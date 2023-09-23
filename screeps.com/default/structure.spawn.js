@@ -49,22 +49,20 @@ let structureSpawn = {
                 }
             }
         } else if (spawn.room.energyCapacityAvailable >= 550) {
-            if (harvesters.length < localSourceIds.length && harvesters.length < haulers.length) {
-                let newName = 'Harvester' + Game.time;
-                console.log('Now spawning: ' + newName);
-                spawn.spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
-                    { memory: { role: 'harvester', mySourceId: spawn.room.memory.localSourceIds[harvesters.length] } })
-            } 
-            else if (haulers.length < harvesters.length) {
+            if (haulers.length < harvesters.length) {
                 let newName = 'Hauler' + Game.time;
                 console.log('Now spawning: ' + newName);
                 spawn.spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE], newName,
                     { memory: { role: 'hauler', 
-                    myHarvesterId: harvesters[haulers.length - 1].id, 
-                    mySourceId: spawn.room.memory.localSourceIds[harvesters.length],
                     collect : true
                 } });
             } 
+            else if (harvesters.length < localSourceIds.length || harvesters.length < haulers.length) {
+                let newName = 'Harvester' + Game.time;
+                console.log('Now spawning: ' + newName);
+                spawn.spawnCreep([WORK, WORK, WORK, WORK, WORK, MOVE], newName,
+                    { memory: { role: 'harvester', mySourceId: spawn.room.memory.localSourceIds[harvesters.length] } })
+            }  
             else if (upgraders.length < 1) {
                 let newName = 'Upgrader' + Game.time;
                 console.log('Now spawning: ' + newName);
